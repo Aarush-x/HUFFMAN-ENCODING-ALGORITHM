@@ -1,0 +1,108 @@
+--- Huffman Encoding Menu ---
+1. Print the character weights (frequencies)
+2. Print Tree (Right-Root-Left)
+3. Print the Huffman codes
+4. Enter one character to get its code
+5. Enter a word to get ASCII and Huffman binary
+6. Encode a file
+7. Decode a file
+8. Quit
+Enter your choice: 1
+
+Character Frequencies:
+'M' : 1
+'i' : 4
+'p' : 2
+'s' : 4
+
+Linked List (Sorted by Frequency): (M, 1) -> (p, 2) -> (s, 4) -> (i, 4) -> NULL
+
+--- Huffman Encoding Menu ---
+1. Print the character weights (frequencies)
+2. Print Tree (Right-Root-Left)
+3. Print the Huffman codes
+4. Enter one character to get its code
+5. Enter a word to get ASCII and Huffman binary
+6. Encode a file
+7. Decode a file
+8. Quit
+Enter your choice: 2
+
+[Tree building and printing module reserved for Week 7]
+
+--- Huffman Encoding Menu ---
+1. Print the character weights (frequencies)
+2. Print Tree (Right-Root-Left)
+3. Print the Huffman codes
+4. Enter one character to get its code
+5. Enter a word to get ASCII and Huffman binary
+6. Encode a file
+7. Decode a file
+8. Quit
+Enter your choice: 3
+
+[Module under construction]
+
+--- Huffman Encoding Menu ---
+1. Print the character weights (frequencies)
+2. Print Tree (Right-Root-Left)
+3. Print the Huffman codes
+4. Enter one character to get its code
+5. Enter a word to get ASCII and Huffman binary
+6. Encode a file
+7. Decode a file
+8. Quit
+Enter your choice: 4
+
+[Module under construction]
+
+--- Huffman Encoding Menu ---
+1. Print the character weights (frequencies)
+2. Print Tree (Right-Root-Left)
+3. Print the Huffman codes
+4. Enter one character to get its code
+5. Enter a word to get ASCII and Huffman binary
+6. Encode a file
+7. Decode a file
+8. Quit
+Enter your choice: 5
+
+[Module under construction]
+
+--- Huffman Encoding Menu ---
+1. Print the character weights (frequencies)
+2. Print Tree (Right-Root-Left)
+3. Print the Huffman codes
+4. Enter one character to get its code
+5. Enter a word to get ASCII and Huffman binary
+6. Encode a file
+7. Decode a file
+8. Quit
+Enter your choice: 6
+
+[Module under construction]
+
+--- Huffman Encoding Menu ---
+1. Print the character weights (frequencies)
+2. Print Tree (Right-Root-Left)
+3. Print the Huffman codes
+4. Enter one character to get its code
+5. Enter a word to get ASCII and Huffman binary
+6. Encode a file
+7. Decode a file
+8. Quit
+Enter your choice: 7
+
+[Module under construction]
+
+--- Huffman Encoding Menu ---
+1. Print the character weights (frequencies)
+2. Print Tree (Right-Root-Left)
+3. Print the Huffman codes
+4. Enter one character to get its code
+5. Enter a word to get ASCII and Huffman binary
+6. Encode a file
+7. Decode a file
+8. Quit
+Enter your choice: 8
+Exiting program...
