@@ -1,3 +1,4 @@
+
 --- Huffman Encoding Menu ---
 1. Print the character weights (frequencies)
 2. Print Tree (Right-Root-Left)
@@ -28,72 +29,19 @@ Linked List (Sorted by Frequency): (M, 1) -> (p, 2) -> (s, 4) -> (i, 4) -> NULL
 8. Quit
 Enter your choice: 2
 
-[Tree building and printing module reserved for Week 7]
+          's' (4)
 
---- Huffman Encoding Menu ---
-1. Print the character weights (frequencies)
-2. Print Tree (Right-Root-Left)
-3. Print the Huffman codes
-4. Enter one character to get its code
-5. Enter a word to get ASCII and Huffman binary
-6. Encode a file
-7. Decode a file
-8. Quit
-Enter your choice: 3
+     * (7)
 
-[Module under construction]
+               'p' (2)
 
---- Huffman Encoding Menu ---
-1. Print the character weights (frequencies)
-2. Print Tree (Right-Root-Left)
-3. Print the Huffman codes
-4. Enter one character to get its code
-5. Enter a word to get ASCII and Huffman binary
-6. Encode a file
-7. Decode a file
-8. Quit
-Enter your choice: 4
+          * (3)
 
-[Module under construction]
+               'M' (1)
 
---- Huffman Encoding Menu ---
-1. Print the character weights (frequencies)
-2. Print Tree (Right-Root-Left)
-3. Print the Huffman codes
-4. Enter one character to get its code
-5. Enter a word to get ASCII and Huffman binary
-6. Encode a file
-7. Decode a file
-8. Quit
-Enter your choice: 5
+* (11)
 
-[Module under construction]
-
---- Huffman Encoding Menu ---
-1. Print the character weights (frequencies)
-2. Print Tree (Right-Root-Left)
-3. Print the Huffman codes
-4. Enter one character to get its code
-5. Enter a word to get ASCII and Huffman binary
-6. Encode a file
-7. Decode a file
-8. Quit
-Enter your choice: 6
-
-[Module under construction]
-
---- Huffman Encoding Menu ---
-1. Print the character weights (frequencies)
-2. Print Tree (Right-Root-Left)
-3. Print the Huffman codes
-4. Enter one character to get its code
-5. Enter a word to get ASCII and Huffman binary
-6. Encode a file
-7. Decode a file
-8. Quit
-Enter your choice: 7
-
-[Module under construction]
+     'i' (4)
 
 --- Huffman Encoding Menu ---
 1. Print the character weights (frequencies)
@@ -106,3 +54,7 @@ Enter your choice: 7
 8. Quit
 Enter your choice: 8
 Exiting program...
+
+C:\Users\zackh\source\repos\HUFFMAN-ENCODING-ALGORITHM\out\build\x64-Debug\HuffmanEncoder.exe (process 23248) exited with code 0 (0x0).
+To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
+Press any key to close this window . . .

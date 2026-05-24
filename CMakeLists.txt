@@ -15,3 +15,5 @@ file(GLOB SOURCES "Cpp Files/*.cpp")
 
 # Create the executable
 add_executable(HuffmanEncoder ${SOURCES})
+
+#test

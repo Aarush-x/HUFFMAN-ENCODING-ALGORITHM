@@ -8,6 +8,7 @@ HuffmanManager::HuffmanManager() {
     for (int i = 0; i < 256; i++) {
         frequencyArray[i] = 0;
     }
+    huffmanTreeRoot = nullptr;
 }
 
 void HuffmanManager::countFrequencies(string text) {
@@ -28,6 +29,53 @@ void HuffmanManager::printFrequencies() {
             cout << "'" << (char)i << "' : " << frequencyArray[i] << "\n";
         }
     }
+}
+
+void HuffmanManager::buildHuffmanTree() {
+    while (list.getSize() > 1) {
+        TreeNode* left = list.popFront();
+        TreeNode* right = list.popFront();
+
+        int combinedFreq = left->data.getFrequency() + right->data.getFrequency();
+
+        HuffmanData internalData('\0', combinedFreq); // Internal node has no character
+        TreeNode* internalNode = new TreeNode(internalData);
+
+        internalNode->left = left;
+        internalNode->right = right;
+
+        list.insertSorted(internalNode);
+	}
+
+    huffmanTreeRoot = list.getFront();
+}
+
+void HuffmanManager::printTreeRecursive(TreeNode* node, int space) {
+    if (node == nullptr) return;
+    // Increase distance between levels
+    space += 5;
+    // Process right child first
+    printTreeRecursive(node->right, space);
+    // Print current node after space count
+    cout << endl;
+    for (int i = 5; i < space; i++) {
+        cout << " ";
+    }
+    if (node->data.getCharacter() != '\0') {
+        cout << "'" << node->data.getCharacter() << "' (" << node->data.getFrequency() << ")\n";
+    } else {
+        cout << "* (" << node->data.getFrequency() << ")\n"; // Internal node
+    }
+    // Process left child
+    printTreeRecursive(node->left, space);
+}
+
+void HuffmanManager::printHuffmanTree() {
+    if (huffmanTreeRoot == nullptr) {
+        cout << "Huffman tree not built yet.\n";
+    } else {
+        printTreeRecursive(huffmanTreeRoot, 0);
+	}
 }
 
 void HuffmanManager::runMenu() {
@@ -63,7 +111,8 @@ void HuffmanManager::runMenu() {
             list.printList();
         } 
         else if (choice == 2) {
-            cout << "\n[Tree building and printing module reserved for Week 7]\n";
+            buildHuffmanTree();
+            printHuffmanTree();
         } 
         else if (choice >= 3 && choice <= 7) {
             cout << "\n[Module under construction]\n";
