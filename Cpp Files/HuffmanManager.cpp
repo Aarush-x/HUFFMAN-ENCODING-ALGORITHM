@@ -1,5 +1,6 @@
 #include <iostream>
 #include "HuffmanManager.h"
+#include <fstream>
 
 using namespace std;
 
@@ -78,6 +79,87 @@ void HuffmanManager::printHuffmanTree() {
 	}
 }
 
+// Traverses the tree. Goes left = add "0", goes right = add "1"
+void HuffmanManager::generateCodesRecursive(TreeNode* node, string code) {
+    if (node == nullptr) return;
+
+    // If it's a leaf node, store the code
+    if (node->left == nullptr && node->right == nullptr) {
+        huffmanCodes[(unsigned char)node->data.getCharacter()] = code;
+    }
+
+    // Traverse left and right children
+    generateCodesRecursive(node->left, code + "0");
+    generateCodesRecursive(node->right, code + "1");
+}
+
+void HuffmanManager::generateHuffmanCodes() {
+    if (huffmanTreeRoot == nullptr) {
+        cout << "Huffman tree not built yet. Cannot generate codes.\n";
+    } else {
+        generateCodesRecursive(huffmanTreeRoot, "");
+    }
+}
+
+// Converts a character to its 8-bit binary string representation
+string HuffmanManager::characterToBinaryString(char c) {
+    string binaryString = "";
+    for (int i = 7; i >= 0; i--) {
+        binaryString += ((c >> i) & 1) ? '1' : '0';
+    }
+    return binaryString;
+}
+
+void HuffmanManager::encodeFile(string inputFile, string outputFile) {
+    ifstream inFile(inputFile);
+    ofstream outFile(outputFile);
+
+    if (!inFile.is_open() || !outFile.is_open()) {
+        cerr << "Error opening files!" << endl;
+        return;
+    }
+
+    char ch;
+    while (inFile.get(ch)) {
+        string code = huffmanCodes[(unsigned char)ch];
+        outFile << characterToBinaryString(ch) << " " << code << endl;
+    }
+
+    inFile.close();
+    outFile.close();
+    cout << "File encoded successfully to " << outputFile << endl;
+}
+
+void HuffmanManager::decodeFile(string inputFile, string outputFile) {
+    ifstream inFile(inputFile);
+    ofstream outFile(outputFile);
+
+    if (!inFile.is_open() || huffmanTreeRoot == nullptr || !outFile.is_open()) {
+        cout << "Error opening files!" << endl;
+        return;
+    }
+
+    char ch;
+    TreeNode* currentNode = huffmanTreeRoot;
+    while (inFile.get(ch)) {
+        if (ch == '0') {
+            currentNode = currentNode->left;
+        } else if (ch == '1') {
+            currentNode = currentNode->right;
+        }
+
+        // If we reached a leaf node, output the character
+        if (currentNode->left == nullptr && currentNode->right == nullptr) {
+            outFile << currentNode->data.getCharacter();
+            currentNode = huffmanTreeRoot; // Reset for the next character
+        }
+    }
+
+    inFile.close();
+    outFile.close();
+    cout << "File decoded successfully to " << outputFile << endl;
+}
+
 void HuffmanManager::runMenu() {
     int choice = 0; // Initialize to 0 so the while loop runs the first time
     string dummyText = "Mississippi"; // Hardcoded just to show Week 3 output
@@ -114,9 +196,52 @@ void HuffmanManager::runMenu() {
             buildHuffmanTree();
             printHuffmanTree();
         } 
-        else if (choice >= 3 && choice <= 7) {
-            cout << "\n[Module under construction]\n";
+        else if (choice == 3) {
+            generateHuffmanCodes();
+            cout << "\nHuffman Codes:\n";
+            for (int i = 0; i < 256; i++) {
+                if (!huffmanCodes[i].empty()) {
+                    cout << "'" << (char)i << "' : " << huffmanCodes[i] << "\n";
+                }
+            }
+            
         } 
+        else if (choice == 4) {
+            char c;
+            cout << "Enter a character: ";
+            cin >> c;
+            cout << "Huffman code for '" << c << "': " << huffmanCodes[(unsigned char)c] << "\n";
+        } 
+        else if (choice == 5) {
+            string word;
+            cout << "Enter a word: ";
+            cin >> word;
+            cout << "ASCII Binary: ";
+            for (int i = 0; i < word.length(); i++) {
+                cout << characterToBinaryString(word[i]) << " ";
+            }
+            cout << "\nHuffman Binary: ";
+            for (int i = 0; i < word.length(); i++) {
+                cout << huffmanCodes[(unsigned char)word[i]] << " ";
+            }
+            cout << "\n";
+        } 
+        else if (choice == 6) {
+            string inputFile, outputFile;
+            cout << "Enter input file name: ";
+            cin >> inputFile;
+            cout << "Enter output file name: ";
+            cin >> outputFile;
+            encodeFile(inputFile, outputFile);
+        } 
+        else if (choice == 7) {
+            string inputFile, outputFile;
+            cout << "Enter input file name: ";
+            cin >> inputFile;
+            cout << "Enter output file name: ";
+            cin >> outputFile;
+            decodeFile(inputFile, outputFile);
+        }
         else if (choice == 8) {
             cout << "Exiting program...\n";
         } 

@@ -13,14 +13,14 @@ void LinkedList::insertSorted(TreeNode* root) {
     ListNode* newNode = new ListNode(root);
 
     // If list is empty or new node has smaller frequency than head
-    if (head == nullptr || head->treeRoot->data.getFrequency() >= root->data.getFrequency()) {
+    if (head == nullptr || head->treeRoot->data.getFrequency() > root->data.getFrequency()) {
         newNode->next = head;
         head = newNode;
     } else {
         // Find the right spot to insert
         ListNode* current = head;
         while (current->next != nullptr && 
-               current->next->treeRoot->data.getFrequency() < root->data.getFrequency()) {
+               current->next->treeRoot->data.getFrequency() <= root->data.getFrequency()) {
             current = current->next;
         }
         newNode->next = current->next;
