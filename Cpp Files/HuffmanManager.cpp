@@ -142,14 +142,21 @@ void HuffmanManager::decodeFile(string inputFile, string outputFile) {
     char ch;
     TreeNode* currentNode = huffmanTreeRoot;
     while (inFile.get(ch)) {
+        // Check if currentNode is valid before dereferencing
+        if (currentNode == nullptr) {
+            cout << "Error: Invalid encoded data detected!" << endl;
+            break;
+        }
+
         if (ch == '0') {
             currentNode = currentNode->left;
-        } else if (ch == '1') {
+        }
+        else if (ch == '1') {
             currentNode = currentNode->right;
         }
 
-        // If we reached a leaf node, output the character
-        if (currentNode->left == nullptr && currentNode->right == nullptr) {
+        // Check if currentNode is valid before dereferencing
+        if (currentNode != nullptr && currentNode->left == nullptr && currentNode->right == nullptr) {
             outFile << currentNode->data.getCharacter();
             currentNode = huffmanTreeRoot; // Reset for the next character
         }
