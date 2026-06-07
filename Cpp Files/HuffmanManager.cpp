@@ -1,3 +1,12 @@
+/*
+ * Group Number: 2
+ * Project Title: Huffman Encoding Algorithm
+ * Programmers: Aarush Muralinathan & Zhen Huey Lee
+ * Assignments: 
+ * - Aarush: runMenu(), file encoding/decoding, integration.
+ * - Zhen Huey: buildTree(), generateCodes(), tree traversal.
+ */
+
 #include <iostream>
 #include "HuffmanManager.h"
 #include <fstream>
