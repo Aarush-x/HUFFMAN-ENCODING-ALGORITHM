@@ -1,3 +1,9 @@
+/*
+ * Group Number: 2
+ * Project Title: Huffman Encoding Algorithm
+ * Programmer: Aarush Muralinathan (Student 1)
+ * Assignment/Role: Data Structure Design, Linked List algorithms, main(), menu(), and file I/O.
+ */
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
