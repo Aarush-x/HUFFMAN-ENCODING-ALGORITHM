@@ -1,3 +1,9 @@
+/*
+ * Group Number: 2
+ * Project Title: Huffman Encoding Algorithm
+ * Programmer: Zhen Huey Lee (Student 2)
+ * Assignment/Role: Data Structure Design, Binary Tree algorithms, and Hash Table (frequency) algorithms.
+ */
 #ifndef HUFFMAN_STRUCTURES_H
 #define HUFFMAN_STRUCTURES_H
 
