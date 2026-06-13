@@ -1,3 +1,42 @@
+--- Huffman Encoding Menu ---
+1. Print the character weights (frequencies)
+2. Print Tree (Right-Root-Left)
+3. Print the Huffman codes
+4. Enter one character to get its code
+5. Enter a word to get ASCII and Huffman binary
+6. Encode a file
+7. Decode a file
+8. Quit
+Enter your choice: 1
+No data processed yet. Try Option 6 (Encode) first.
+
+--- Huffman Encoding Menu ---
+1. Print the character weights (frequencies)
+2. Print Tree (Right-Root-Left)
+3. Print the Huffman codes
+4. Enter one character to get its code
+5. Enter a word to get ASCII and Huffman binary
+6. Encode a file
+7. Decode a file
+8. Quit
+Enter your choice: 6
+Enter input file name: in.txt
+Enter output file name: encoded.txt
+File encoded successfully to encoded.txt
+
+--- Huffman Encoding Menu ---
+1. Print the character weights (frequencies)
+2. Print Tree (Right-Root-Left)
+3. Print the Huffman codes
+4. Enter one character to get its code
+5. Enter a word to get ASCII and Huffman binary
+6. Encode a file
+7. Decode a file
+8. Quit
+Enter your choice: 7
+Enter input file name: encoded.txt
+Enter output file name: decoded.txt
+File decoded successfully to decoded.txt
 
 --- Huffman Encoding Menu ---
 1. Print the character weights (frequencies)
@@ -11,12 +50,58 @@
 Enter your choice: 1
 
 Character Frequencies:
-'M' : 1
-'i' : 4
-'p' : 2
-'s' : 4
+'
+' : 15
+' ' : 180
+'"' : 2
+''' : 2
+'(' : 2
+')' : 2
+',' : 7
+'-' : 3
+'.' : 8
+'/' : 1
+'1' : 2
+'2' : 2
+'3' : 1
+'4' : 1
+'5' : 1
+'9' : 1
+'A' : 3
+'C' : 2
+'D' : 1
+'H' : 7
+'I' : 2
+'M' : 3
+'R' : 1
+'T' : 4
+'[' : 4
+']' : 4
+'a' : 70
+'b' : 19
+'c' : 42
+'d' : 40
+'e' : 111
+'f' : 36
+'g' : 21
+'h' : 37
+'i' : 69
+'l' : 39
+'m' : 50
+'n' : 64
+'o' : 83
+'p' : 25
+'q' : 2
+'r' : 57
+'s' : 67
+'t' : 66
+'u' : 30
+'v' : 7
+'w' : 10
+'x' : 1
+'y' : 20
 
-Linked List (Sorted by Frequency): (M, 1) -> (p, 2) -> (s, 4) -> (i, 4) -> NULL
+Linked List (Sorted by Frequency): (, 1227) -> NULL
 
 --- Huffman Encoding Menu ---
 1. Print the character weights (frequencies)
@@ -29,19 +114,290 @@ Linked List (Sorted by Frequency): (M, 1) -> (p, 2) -> (s, 4) -> (i, 4) -> NULL
 8. Quit
 Enter your choice: 2
 
-          's' (4)
+                    'e' (111)
 
-     * (7)
+               * (209)
 
-               'p' (2)
+                         'm' (50)
 
-          * (3)
+                    * (98)
 
-               'M' (1)
+                              'p' (25)
 
-* (11)
+                         * (48)
 
-     'i' (4)
+                                        ',' (7)
+
+                                   * (13)
+
+                                             'M' (3)
+
+                                        * (6)
+
+                                             'A' (3)
+
+                              * (23)
+
+                                   'w' (10)
+
+          * (389)
+
+               ' ' (180)
+
+     * (707)
+
+                         'c' (42)
+
+                    * (83)
+
+                              'g' (21)
+
+                         * (41)
+
+                              'y' (20)
+
+               * (166)
+
+                    'o' (83)
+
+          * (318)
+
+                         'd' (40)
+
+                    * (79)
+
+                         'l' (39)
+
+               * (152)
+
+                         'h' (37)
+
+                    * (73)
+
+                              'b' (19)
+
+                         * (36)
+
+                                             '-' (3)
+
+                                        * (5)
+
+                                                  'x' (1)
+
+                                             * (2)
+
+                                                  'R' (1)
+
+                                   * (9)
+
+                                                  'D' (1)
+
+                                             * (2)
+
+                                                  '9' (1)
+
+                                        * (4)
+
+                                                  '5' (1)
+
+                                             * (2)
+
+                                                  '4' (1)
+
+                              * (17)
+
+                                                  '3' (1)
+
+                                             * (2)
+
+                                                  '/' (1)
+
+                                        * (4)
+
+                                             'q' (2)
+
+                                   * (8)
+
+                                             'I' (2)
+
+                                        * (4)
+
+                                             'C' (2)
+
+* (1227)
+
+                    'a' (70)
+
+               * (139)
+
+                    'i' (69)
+
+          * (274)
+
+                         'f' (36)
+
+                    * (68)
+
+                                             '2' (2)
+
+                                        * (4)
+
+                                             '1' (2)
+
+                                   * (8)
+
+                                             ')' (2)
+
+                                        * (4)
+
+                                             '(' (2)
+
+                              * (16)
+
+                                             ''' (2)
+
+                                        * (4)
+
+                                             '"' (2)
+
+                                   * (8)
+
+                                        ']' (4)
+
+                         * (32)
+
+                                        '[' (4)
+
+                                   * (8)
+
+                                        'T' (4)
+
+                              * (16)
+
+                                   '.' (8)
+
+               * (135)
+
+                    's' (67)
+
+     * (520)
+
+                    't' (66)
+
+               * (130)
+
+                    'n' (64)
+
+          * (246)
+
+                         'u' (30)
+
+                    * (59)
+
+                              '
+' (15)
+
+                         * (29)
+
+                                   'v' (7)
+
+                              * (14)
+
+                                   'H' (7)
+
+               * (116)
+
+                    'r' (57)
+
+--- Huffman Encoding Menu ---
+1. Print the character weights (frequencies)
+2. Print Tree (Right-Root-Left)
+3. Print the Huffman codes
+4. Enter one character to get its code
+5. Enter a word to get ASCII and Huffman binary
+6. Encode a file
+7. Decode a file
+8. Quit
+Enter your choice: 3
+
+Huffman Codes:
+'
+' : 000101
+' ' : 110
+'"' : 010101010
+''' : 010101011
+'(' : 010101100
+')' : 010101101
+',' : 11100011
+'-' : 100000111
+'.' : 0101000
+'/' : 1000000110
+'1' : 010101110
+'2' : 010101111
+'3' : 1000000111
+'4' : 1000001000
+'5' : 1000001001
+'9' : 1000001010
+'A' : 111000100
+'C' : 100000000
+'D' : 1000001011
+'H' : 0001000
+'I' : 100000001
+'M' : 111000101
+'R' : 1000001100
+'T' : 01010010
+'[' : 01010011
+']' : 01010100
+'a' : 0111
+'b' : 100001
+'c' : 10111
+'d' : 10011
+'e' : 1111
+'f' : 01011
+'g' : 101101
+'h' : 10001
+'i' : 0110
+'l' : 10010
+'m' : 11101
+'n' : 0010
+'o' : 1010
+'p' : 111001
+'q' : 100000010
+'r' : 0000
+'s' : 0100
+'t' : 0011
+'u' : 00011
+'v' : 0001001
+'w' : 1110000
+'x' : 1000001101
+'y' : 101100
+
+--- Huffman Encoding Menu ---
+1. Print the character weights (frequencies)
+2. Print Tree (Right-Root-Left)
+3. Print the Huffman codes
+4. Enter one character to get its code
+5. Enter a word to get ASCII and Huffman binary
+6. Encode a file
+7. Decode a file
+8. Quit
+Enter your choice: 4
+Enter a character: m
+Huffman code for 'm': 11101
+
+--- Huffman Encoding Menu ---
+1. Print the character weights (frequencies)
+2. Print Tree (Right-Root-Left)
+3. Print the Huffman codes
+4. Enter one character to get its code
+5. Enter a word to get ASCII and Huffman binary
+6. Encode a file
+7. Decode a file
+8. Quit
+Enter your choice: 5
+Enter a word: mis
+ASCII Binary: 01101101 01101001 01110011 
+Huffman Binary: 11101 0110 0100 
 
 --- Huffman Encoding Menu ---
 1. Print the character weights (frequencies)
@@ -54,7 +410,3 @@ Enter your choice: 2
 8. Quit
 Enter your choice: 8
 Exiting program...
-
-C:\Users\zackh\source\repos\HUFFMAN-ENCODING-ALGORITHM\out\build\x64-Debug\HuffmanEncoder.exe (process 23248) exited with code 0 (0x0).
-To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
-Press any key to close this window . . .
