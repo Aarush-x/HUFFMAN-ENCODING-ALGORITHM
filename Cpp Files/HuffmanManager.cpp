@@ -121,20 +121,60 @@ string HuffmanManager::characterToBinaryString(char c) {
 
 void HuffmanManager::encodeFile(string inputFile, string outputFile) {
     ifstream inFile(inputFile);
-    ofstream outFile(outputFile);
-
-    if (!inFile.is_open() || !outFile.is_open()) {
-        cerr << "Error opening files!" << endl;
+    if (!inFile.is_open()) {
+        cout << "Error opening input file!" << endl;
         return;
     }
 
-    char ch;
-    while (inFile.get(ch)) {
-        string code = huffmanCodes[(unsigned char)ch];
-        outFile << characterToBinaryString(ch) << " " << code << endl;
+    // 1. Read file to count frequencies
+    // Reset frequencies
+    for (int i = 0; i < 256; i++) {
+        frequencyArray[i] = 0;
     }
 
+    char ch;
+    string content = "";
+    while (inFile.get(ch)) {
+        frequencyArray[(unsigned char)ch]++;
+        content += ch;
+    }
     inFile.close();
+
+    if (content.length() == 0) {
+        cout << "Input file is empty!" << endl;
+        return;
+    }
+
+    // 2. Build the tree and codes based on THIS file
+    // Note: This relies on your existing LinkedList and TreeNode logic
+    // We need to clear the list and reset the root
+    list = LinkedList(); 
+    huffmanTreeRoot = nullptr;
+
+    for (int i = 0; i < 256; i++) {
+        huffmanCodes[i] = ""; // Reset codes
+        if (frequencyArray[i] > 0) {
+            HuffmanData hd((char)i, frequencyArray[i]);
+            TreeNode* newNode = new TreeNode(hd);
+            list.insertSorted(newNode);
+        }
+    }
+
+    buildHuffmanTree();
+    generateHuffmanCodes();
+
+    // 3. Write ONLY the Huffman bits to the output file
+    ofstream outFile(outputFile);
+    if (!outFile.is_open()) {
+        cout << "Error opening output file!" << endl;
+        return;
+    }
+
+    for (int i = 0; i < content.length(); i++) {
+        char c = content[i];
+        outFile << huffmanCodes[(unsigned char)c];
+    }
+
     outFile.close();
     cout << "File encoded successfully to " << outputFile << endl;
 }
@@ -143,31 +183,33 @@ void HuffmanManager::decodeFile(string inputFile, string outputFile) {
     ifstream inFile(inputFile);
     ofstream outFile(outputFile);
 
-    if (!inFile.is_open() || huffmanTreeRoot == nullptr || !outFile.is_open()) {
+    if (!inFile.is_open() || !outFile.is_open()) {
         cout << "Error opening files!" << endl;
         return;
     }
 
-    char ch;
-    TreeNode* currentNode = huffmanTreeRoot;
-    while (inFile.get(ch)) {
-        // Check if currentNode is valid before dereferencing
-        if (currentNode == nullptr) {
-            cout << "Error: Invalid encoded data detected!" << endl;
-            break;
-        }
+    if (huffmanTreeRoot == nullptr) {
+        cout << "Error: Huffman tree not built. Encode a file first." << endl;
+        return;
+    }
 
-        if (ch == '0') {
+    char bit;
+    TreeNode* currentNode = huffmanTreeRoot;
+    while (inFile.get(bit)) {
+        if (bit == '0') {
             currentNode = currentNode->left;
         }
-        else if (ch == '1') {
+        else if (bit == '1') {
             currentNode = currentNode->right;
         }
+        else {
+            continue; // Skip spaces or newlines if any
+        }
 
-        // Check if currentNode is valid before dereferencing
+        // If it's a leaf node, we found a character
         if (currentNode != nullptr && currentNode->left == nullptr && currentNode->right == nullptr) {
             outFile << currentNode->data.getCharacter();
-            currentNode = huffmanTreeRoot; // Reset for the next character
+            currentNode = huffmanTreeRoot; // Reset to top of tree for next bits
         }
     }
 
@@ -177,19 +219,8 @@ void HuffmanManager::decodeFile(string inputFile, string outputFile) {
 }
 
 void HuffmanManager::runMenu() {
-    int choice = 0; // Initialize to 0 so the while loop runs the first time
-    string dummyText = "Mississippi"; // Hardcoded just to show Week 3 output
+    int choice = 0;
     
-    // Build the frequency array and linked list for our test output
-    countFrequencies(dummyText);
-    for (int i = 0; i < 256; i++) {
-        if (frequencyArray[i] > 0) {
-            HuffmanData hd((char)i, frequencyArray[i]);
-            TreeNode* newNode = new TreeNode(hd);
-            list.insertSorted(newNode);
-        }
-    }
-
     while (choice != 8) {
         cout << "\n--- Huffman Encoding Menu ---\n";
         cout << "1. Print the character weights (frequencies)\n";
@@ -204,29 +235,42 @@ void HuffmanManager::runMenu() {
         cin >> choice;
 
         if (choice == 1) {
-            printFrequencies();
-            cout << "\n";
-            list.printList();
+            if (huffmanTreeRoot == nullptr) {
+                cout << "No data processed yet. Try Option 6 (Encode) first.\n";
+            } else {
+                printFrequencies();
+                cout << "\n";
+                list.printList();
+            }
         } 
         else if (choice == 2) {
-            buildHuffmanTree();
-            printHuffmanTree();
+            if (huffmanTreeRoot == nullptr) {
+                cout << "No tree built yet. Try Option 6 (Encode) first.\n";
+            } else {
+                printHuffmanTree();
+            }
         } 
         else if (choice == 3) {
-            generateHuffmanCodes();
-            cout << "\nHuffman Codes:\n";
-            for (int i = 0; i < 256; i++) {
-                if (!huffmanCodes[i].empty()) {
-                    cout << "'" << (char)i << "' : " << huffmanCodes[i] << "\n";
+            if (huffmanTreeRoot == nullptr) {
+                cout << "No codes generated yet. Try Option 6 (Encode) first.\n";
+            } else {
+                cout << "\nHuffman Codes:\n";
+                for (int i = 0; i < 256; i++) {
+                    if (huffmanCodes[i] != "") {
+                        cout << "'" << (char)i << "' : " << huffmanCodes[i] << "\n";
+                    }
                 }
             }
-            
         } 
         else if (choice == 4) {
-            char c;
-            cout << "Enter a character: ";
-            cin >> c;
-            cout << "Huffman code for '" << c << "': " << huffmanCodes[(unsigned char)c] << "\n";
+            if (huffmanTreeRoot == nullptr) {
+                cout << "No codes generated yet. Try Option 6 (Encode) first.\n";
+            } else {
+                char c;
+                cout << "Enter a character: ";
+                cin >> c;
+                cout << "Huffman code for '" << c << "': " << huffmanCodes[(unsigned char)c] << "\n";
+            }
         } 
         else if (choice == 5) {
             string word;
@@ -237,8 +281,12 @@ void HuffmanManager::runMenu() {
                 cout << characterToBinaryString(word[i]) << " ";
             }
             cout << "\nHuffman Binary: ";
-            for (int i = 0; i < word.length(); i++) {
-                cout << huffmanCodes[(unsigned char)word[i]] << " ";
+            if (huffmanTreeRoot == nullptr) {
+                cout << "(Tree not built)";
+            } else {
+                for (int i = 0; i < word.length(); i++) {
+                    cout << huffmanCodes[(unsigned char)word[i]] << " ";
+                }
             }
             cout << "\n";
         } 
@@ -263,6 +311,8 @@ void HuffmanManager::runMenu() {
         } 
         else {
             cout << "Invalid choice. Try again.\n";
+            cin.clear();
+            cin.ignore(100, '\n');
         }
     }
 }
